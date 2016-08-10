@@ -4,15 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
 var routes = require('./routes/index');
 
 
 var app = express();
 
+mongoose.connect('mongodb://localhost/url_shortner', function(err, res) {
+  if(err) {
+  console.log('Error connecting to the database. ' + err);
+} else {
+  console.log('Connected to Database');
+}
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
