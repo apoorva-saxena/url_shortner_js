@@ -4,32 +4,36 @@ var Url = require('../models/url');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    res.render('index', {
-        title: 'URL Shortner'
-    });
+    res.render('index');
 });
 
 router.post('/', function(req, res, next) {
-            var url_input = req.body.url_input;
-            if (errors) {
-                res.render('index', {
-                    errors: errors
-                });
-            } else {
-                var newUrl = new Url({
-                    url_input: url_input
-                });
-            }
-            Url.createURL(newUrl, function(err, url) {
-                if (err) {
-                    throw err;
-                } else {
-                    res.redirect('/');
-                }
-            });
-          });
+    var inputURL = req.body.inputURL;
 
+    var newUrl = new Url({
+        inputURL: inputURL
+    });
+    Url.createURL(newUrl, function(err, url) {
+        console.log('creating url:',url);
+        if (err) {
+            throw err;
+        } else {
+            res.redirect('/view/' + url._id);
+        }
+    });
+});
 
+router.get('/view/:_id', function(req, res, next) {
+  Url.findById({
+      _id: req.params._id
+  }, function(err, url) {
+      if (err) {
+          console.log(err)
+      }
+      res.render('view',{
+          url: url
+      });
+  });
+});
 
-            module.exports = router;
+module.exports = router;

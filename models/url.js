@@ -7,12 +7,12 @@ var UrlSchema = mongoose.Schema({
 
 var Url = module.exports = mongoose.model('Url', UrlSchema);
 
-module.exports.createURL = function(newURL, callback) {
-  newUrl.generatedURL = createShortUrl(makeId());
+module.exports.createURL = function(newUrl, callback) {
+  newUrl.generatedURL = createShortUrl();
   newUrl.save(callback);
 }
 
-module.exports.makeId = function() {
+function makeId(){
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   for( var i=0; i < 5; i++ )
@@ -20,6 +20,8 @@ module.exports.makeId = function() {
   return text;
 }
 
-module.exports.createShortUrl = function(text) {
-  string_form = "shorturl/"+text.toString();
+function createShortUrl() {
+  short_url = makeId();
+  string_form = "shorturl/" + short_url.toString();
+  return string_form;
 }

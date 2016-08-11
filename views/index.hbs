@@ -1,14 +1,15 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<p>Welcome to URL SHORTNER</p>
 <br>
 <br>
-<form>
-  <label for="url-input">Please input a URL:</label>
+<form method="POST" action="/">
+  <label for="inputURL">Please input a URL:</label>
   <br>
-  <input type="text" name="url_input" id="url_input">
+  <input type="text" name="inputURL" id="inputURL">
   <br>
   <input type="submit" value="Submit" name="submit">
 </form>
 
-
-{{url.generatedURL}}
+<p> hello </p>
+<div>{{url.generatedURL}}</div>
+<div> {{url.inputURL}}</div>
