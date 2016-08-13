@@ -1,21 +1,27 @@
 <p>
-    Welcome to URL SHORTNER</p>
+    <h1 id="header">Welcome to URL SHORTNER</h1>
+  </p>
 <br>
 <br>
 <form method="POST" action="/">
-  <label for="inputURL">Please input a URL:</label>
+  <label for="inputURL" id="finder">Please enter a URL:</label>
   <br>
   <input type="text" name="inputURL" id="inputURL">
   <br>
-  <input type="submit" value="Submit" name="submit" onclick()=>
+  <br>
+  <input type="submit" value="Submit" name="submit" id="submit-button" class="btn btn-success">
+
 </form>
 
-<p> hello </p>
-<div>{{url.generatedURL}}</div>
-<div> {{url.inputURL}}</div>
 
-<p> Input URL:{{ url.inputURL}}, Short URL:<a href ={{url.inputURL}}>{{url.generatedURL}}</a></p>
+<div id="div"></div>
 
-<script type="text/javascript">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$( "submit-button" ).click(function( event ) {
+  event.preventDefault();
+  $( "<div>" )
+    .append("default " + event.type + " prevented")
+});
 </script>
