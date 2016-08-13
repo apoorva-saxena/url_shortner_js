@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
         inputURL: inputURL
     });
     Url.createURL(newUrl, function(err, url) {
-        console.log('creating url:',url);
+        console.log('creating url:', url);
         if (err) {
             throw err;
         } else {
@@ -24,16 +24,16 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/view/:_id', function(req, res, next) {
-  Url.findById({
-      _id: req.params._id
-  }, function(err, url) {
-      if (err) {
-          console.log(err)
-      }
-      res.render('view',{
-          url: url
-      });
-  });
+    Url.findById({
+        _id: req.params._id
+    }, function(err, url) {
+        if (err) {
+            console.log(err)
+        }
+        res.render('view', {
+            url: url
+        });
+    });
 });
 
 module.exports = router;
