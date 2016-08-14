@@ -1,28 +1,30 @@
 <p>
-    <h1 id="header">Welcome to URL SHORTNER</h1>
-  </p>
+    <h1 id="header">Url Shortner</h1>
+</p>
 <br>
 <br>
-<form method="POST" action="/">
-  <label for="inputURL" id="finder">Please enter a URL:</label>
-  <br>
-  <input type="text" name="inputURL" id="inputURL">
-  <br>
-  <br>
-
-  <input type="submit" value="Submit" name="submit" id="submit-button" class="btn btn-success">
-
-</form>
-
-
-<div id="div"></div>
+<label for="inputURL" id="finder">Please enter a URL:</label>
+<br>
+<input type="text" name="inputURL" id="inputURL" class="text-center">
+<br>
+<br>
+<input value="Submit" name="submit" id="submit-button" class="btn btn-success">
+<br>
+<br>
+<div id="generated_url"></div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-$( "submit-button" ).click(function( event ) {
-  event.preventDefault();
-  $( "<div>" )
-    .append("default " + event.type + " prevented")
-});
+    $("#submit-button").click(function() {
+        $.post(
+          '/gen_url',
+            {'inputURL': $('#inputURL').val()},
+            function(data, status) {
+                returned_data = JSON.parse(data)
+                console.log(returned_data)
+                $('#generated_url').html("<a href=\"http://" + returned_data.inputURL +
+                "\">" + returned_data.generatedURL + "</a>")
+            });
+    });
 </script>

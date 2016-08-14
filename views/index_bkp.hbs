@@ -1,0 +1,22 @@
+<p>
+    <h1 id="header">Welcome to URL SHORTNER</h1>
+  </p>
+<br>
+<br>
+  <label for="inputURL" id="finder">Please enter a URL:</label>
+  <br>
+  <input type="text" name="inputURL" id="inputURL" class="text-center">
+  <br>
+  <br>
+  <input  value="Submit" name="submit" id="submit-button" class="btn btn-success">
+<div id="div"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$( "submit-button" ).click(function( event ) {
+  event.preventDefault();
+  $( "<div>" )
+    .append("default " + event.type + " prevented")
+});
+</script>

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var UrlSchema = mongoose.Schema({
     inputURL: String,
-    generatedURL: String
+    generatedURL: { type: String, index: { unique: true, dropDups: true }}
 })
 
 var Url = module.exports = mongoose.model('Url', UrlSchema);
@@ -22,6 +22,6 @@ function makeId() {
 
 function createShortUrl() {
     short_url = makeId();
-    string_form = "shorturl/" + short_url.toString();
+    string_form = short_url.toString();
     return string_form;
 }
